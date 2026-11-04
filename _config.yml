@@ -3,9 +3,9 @@
 #
 # title: Your awesome title
 #
-# author:
-#   name: Pesche
-#   email: your-email@domain.com
+ author:
+   name: Pesche
+   email: your-email@domain.com
 #
 # The `>` after `description:` means to ignore line-breaks until next key. If
 #   you wish to omit the line-break after the end of text, use `>-` instead.
@@ -31,7 +31,7 @@ remote_theme: jekyll/minima@d4d779a
 # Minima requires the following plugins:
 plugins:
   - jekyll-feed
-#  - jekyll-seo-tag
+  - jekyll-seo-tag
 #
 # Uncomment the following setting if you wish to disable deprecation warnings
 #   from newer versions of sass converter. Adapt as required.
