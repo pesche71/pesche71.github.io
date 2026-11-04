@@ -1,7 +1,7 @@
 # Site-wide settings
 # ------------------
 #
-# title: Your awesome title
+ title: Pesches Blog
 #
  author:
    name: Pesche
@@ -30,8 +30,8 @@ remote_theme: jekyll/minima@d4d779a
 #
 # Minima requires the following plugins:
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-feed
 #
 # Uncomment the following setting if you wish to disable deprecation warnings
 #   from newer versions of sass converter. Adapt as required.
