@@ -4,7 +4,7 @@
 # title: Your awesome title
 #
 # author:
-#   name: GitHub User
+#   name: Pesche
 #   email: your-email@domain.com
 #
 # The `>` after `description:` means to ignore line-breaks until next key. If
@@ -26,11 +26,11 @@
 #   bypassing a Gemfile, use the following setting instead.
 #   It is best that you lock to a particular commit and update if upstream changes
 #   do not affect your site adversely.
-# remote_theme: jekyll/minima@d4d779a
+remote_theme: jekyll/minima@d4d779a
 #
 # Minima requires the following plugins:
-# plugins:
-#  - jekyll-feed
+plugins:
+  - jekyll-feed
 #  - jekyll-seo-tag
 #
 # Uncomment the following setting if you wish to disable deprecation warnings
