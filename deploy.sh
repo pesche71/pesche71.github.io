@@ -1,29 +1,50 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# Abbruch bei Fehlern
-set -e
+# Konfiguration
+BUILD_DIR="_site"
+BRANCH="gh-pages"
+COMMIT_MSG="Deploy Jekyll site $(date +'%a %d %b %Y %H:%M:%S %Z')"
 
-# 1. Jekyll-Seite lokal bauen
-echo "Baue Jekyll-Site..."
+echo "🧹 Lösche alten Build-Ordner (ausser Git-Verzeichnis)..."
+# Wir löschen alles im Ordner _site, behalten aber den versteckten .git-Ordner,
+# damit Git nicht jedes Mal komplett neu initialisiert werden muss.
+if [ -d "$BUILD_DIR" ]; then
+  find $BUILD_DIR -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+fi
+
+echo "📦 Baue Jekyll-Seite lokal..."
 bundle exec jekyll build
 
-# 2. In den _site-Ordner wechseln
-cd _site
+# Prüfen, ob der Build erfolgreich war
+if [ ! -d "$BUILD_DIR" ]; then
+  echo "❌ Fehler: Jekyll-Build ist fehlgeschlagen!"
+  exit 1
+fi
 
-# 3. Git-Repository initialisieren und alle Dateien hinzufügen
-git init
+echo "🚀 Wechsle in den Build-Ordner..."
+cd $BUILD_DIR
+
+# Git initialisieren, falls noch gar kein Repository da ist
+if [ ! -d ".git" ]; then
+  git init
+  git checkout -b $BRANCH
+fi
+
+# Remote-URL automatisch aus dem Hauptprojekt holen
+REMOTE_URL=$(git -C .. config --get remote.origin.url)
+
+# Prüfen, ob "origin" bereits existiert
+if git remote | grep -q "^origin$"; then
+  git remote set-url origin "$REMOTE_URL"
+else
+  git remote add origin "$REMOTE_URL"
+fi
+
+echo "💾 Füge Dateien hinzu und erstelle Commit..."
 git add -A
+git commit -m "$COMMIT_MSG"
 
-# 4. Commit erstellen
-git commit -m "Deploy Jekyll site $(date)"
+echo "⬆️ Pushe zu GitHub ($BRANCH)..."
+git push origin $BRANCH --force
 
-# 5. Auf den gh-pages-Branch von GitHub pushen (URL anpassen!)
-git branch -M gh-pages
-git remote add origin https://pesche71.github.com
-git push -u -f origin gh-pages
-
-# 6. Aufräumen
-cd ..
-rm -rf _site
-
-echo "Deploy abgeschlossen!"
+echo "🎉 Erfolgreich auf GitHub Pages gepusht!"
