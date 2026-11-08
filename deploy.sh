@@ -19,7 +19,7 @@ git commit -m "Deploy Jekyll site $(date)"
 
 # 5. Auf den gh-pages-Branch von GitHub pushen (URL anpassen!)
 git branch -M gh-pages
-git remote add origin https://pesche71.github.io
+git remote add origin https://pesche71.github.com
 git push -u -f origin gh-pages
 
 # 6. Aufräumen
