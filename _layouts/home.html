@@ -31,6 +31,17 @@ layout: base
             {{ post.title | escape }}
           </a>
         </h3>
+        
+        <!-- AB HIER: BEITRAGSBILD AUF DER STARTSEITE -->
+        {% if post.image %}
+          <div class="post-thumbnail" style="margin-top: 10px; margin-bottom: 15px;">
+            <a href="{{ post.url | relative_url }}">
+              <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" style="max-width: 100%; height: auto; display: block; border-radius: 4px;">
+            </a>
+          </div>
+        {% endif %}
+        <!-- ENDE BEITRAGSBILD -->
+        
         {%- if site.minima.show_excerpts -%}
           {{ post.excerpt }}
         {%- endif -%}
