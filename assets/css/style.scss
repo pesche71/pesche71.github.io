@@ -5,3 +5,23 @@
 @import
   "minima/skins/{{ site.minima.skin | default: 'classic' }}",
   "minima/initialize";
+  
+/* Design für deine Infobox */
+.infobox {
+  background-color: #f0f7fb;
+  border-left: 5px solid #2a7ae2;
+  padding: 15px 20px;
+  margin: 25px 0;
+  border-radius: 4px;
+}
+
+.infobox strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.1em;
+}
+
+.infobox ul {
+  margin-bottom: 0;
+}
+
