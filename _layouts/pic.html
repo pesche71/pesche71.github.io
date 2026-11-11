@@ -4,6 +4,15 @@ layout: base
 <article class="post h-entry" itemscope itemtype="http://schema.org">
 
   <header class="post-header">
+	  {% if page.categories and page.categories.size > 0 %}
+    <p class="post-meta">
+      Kategorien: 
+      {% for category in page.categories %}
+        {% assign cat_slug = category | slugify %}
+        <a href="{{ '/kategorien/#' | append: cat_slug | relative_url }}">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+      {% endfor %}
+    </p>
+  {% endif %}
     <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
     <p class="post-meta">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
