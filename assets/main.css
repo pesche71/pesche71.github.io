@@ -1,0 +1,23 @@
+---
+---
+
+@import "minima";
+
+/* Design für deine Infobox */
+.infobox {
+  background-color: #f0f7fb; /* Helles Blau als Hintergrund */
+  border-left: 5px solid #2a7ae2; /* Kräftiger blauer Balken links */
+  padding: 15px 20px;
+  margin: 25px 0;
+  border-radius: 4px;
+}
+
+.infobox strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.1em;
+}
+
+.infobox ul {
+  margin-bottom: 0;
+}
